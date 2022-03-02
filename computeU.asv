@@ -1,0 +1,13 @@
+function u = computeU(Sxx, sx, x)
+
+global invR D
+
+% global Pc Rc m Nu
+
+B = computeB(x);
+lambda = computeLambda(Sxx, sx, B, x);
+% u = invR*(0.5*D'*lambda - B'*(Sxx*x+sx));
+Kxx = 
+kx = -
+u = -[Kxx kx]*[x;1];
+end

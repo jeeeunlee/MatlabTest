@@ -1,13 +1,14 @@
 function [Sxxdot, sxdot, s0dot] = getSdot(Sxx, sx, Kxx, kx)
 
-global A C R Qxx qx q0
+global A B C R Qxx qx q0
 
-Sxxdot = - ( 2*Sxx'*(A-B*Kxx) + Qxx + Kxx'*R*Kxx );
+Sxxdot = - ( Sxx'*(A-B*Kxx) + (A-B*Kxx)'*Sxx + Qxx + Kxx'*R*Kxx );
 
-sxdot1 = - ( 2*Sxx'*(-B*kx+C) + qx + Kxx'*R*kx );
-sxdot2 = - ( 2*sx'*(A-B*Kxx)+qx'+ kx'*R*Kxx );
-sxdot = 0.5*(sxdot1 + sxdot2);
+% sxdot1 = - ( 2*Sxx'*(-B*kx+C) + qx + Kxx'*R*kx );
+% sxdot2 = - ( 2*sx'*(A-B*Kxx)+qx'+ kx'*R*Kxx );
+% sxdot = 0.5*(sxdot1 + sxdot2');
+sxdot = - ( (A-B*Kxx)'*sx + Sxx'*(-B*kx+C) + qx + Kxx'*R*kx );
 
-s0dot = - (2*sx'*(-B*kx+C) + q0 + kx'*R*kx);
+s0dot = - (sx'*(-B*kx+C) + (-B*kx+C)'*sx + q0 + kx'*R*kx);
 
 end

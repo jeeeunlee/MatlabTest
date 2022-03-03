@@ -1,13 +1,13 @@
 function [lambda, Lxx, lx] = computeLambda(Sxx, sx, x)
 
-global D d invR B
+global D d invR B Nx
 
 % lambda0 = (0.5*D*invR*D')\(d+D*invR*B'*(Sxx*x+sx));
-Lxx = (0.5*D*invR*D')\(D*invR*B'*Sxx);
-lx = (0.5*D*invR*D')\(d+D*invR*B'*sx );
+Lxx = pinv(0.5*D*invR*D')*(D*invR*B'*Sxx);
+lx = pinv(0.5*D*invR*D')*(d+D*invR*B'*sx );
 lambda0 = [Lxx lx]*[x;1];
 
-lambda=labmda0;
+lambda=lambda0;
 for i=1:length(lambda0)
     if(lambda0(i)<0)
         lambda(i) = 0;

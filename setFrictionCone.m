@@ -8,7 +8,9 @@ for i=1:length(robot.footname)
     if(~strcmp(robot.swing,fn))
         foot = getfield(robot, fn);
         [Uf, uu] = buildUf(foot.mu);
-        Ku = [Ku; Uf];
+        [cs,rs] = size(Ku);
+        [cu,ru] = size(Uf);
+        Ku = [Ku zeros(cs,ru);zeros(cu,rs) Uf];
         k = [k; uu];
     end
 end

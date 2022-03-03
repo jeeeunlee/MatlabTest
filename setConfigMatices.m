@@ -1,5 +1,5 @@
-function [Pc, Rc] = setConfigMatices(robot)
-Pc = []; Rc = [];
+function [Pc, Rc, Fm] = setConfigMatices(robot)
+Pc = []; Rc = []; Fm =[];
 % robot.footname = {'ar','al','br','bl'};
 for i=1:length(robot.footname)
     fn = robot.footname{i};
@@ -9,5 +9,6 @@ for i=1:length(robot.footname)
         R = foot.rot;
         Pc = [Pc, skew(p)*R];
         Rc = [Rc, R];
+        Fm = [Fm; 0;0;-foot.fm ];
     end
 end

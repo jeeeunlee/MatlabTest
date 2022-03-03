@@ -1,5 +1,0 @@
-function B = computeB(x)
-global Pc Rc m
-B = [Pc-skew(pg)*Rc;]
-
-end

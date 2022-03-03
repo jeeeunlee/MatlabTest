@@ -1,7 +1,0 @@
-function [Sxxdot, sxdot] = getSdot()
-
-global A C R Qxx qx q0
-
-Sxxdot = - ( 2*Sxx'*(A-B*Kxx) + Qxx + Kxx'*R*Kxx );
-
-sxdot1 = - ( 2*Sxx'*(-B*kx+C) + qx + Kxx'*R*kx)

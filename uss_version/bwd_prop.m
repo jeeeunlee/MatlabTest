@@ -8,14 +8,14 @@ sx_seq = [];
 % final state soft constraint
 wL = 1;
 wP = 1;
-wdP = 10;
+wdP = 100;
 Sxx = diag([wL,wL,wL, wP,wP,wP, wdP,wdP,wdP]);
 sx = -Sxx*x0;
 
 Sxx_seq = [reshape(Sxx, 1, Nx*Nx); Sxx_seq]; 
 sx_seq = [sx'; sx_seq];
     
-for tt = 1:Nstep
+for tt = 1:(Nstep-1)
     [u, Kxx, kx] = computeU(Sxx, sx, x0);
     [Sxxdot, sxdot, s0dot] = getSdot(Sxx, sx, Kxx, kx);
     

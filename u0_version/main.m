@@ -1,5 +1,7 @@
 clear all; close all;
-global D d R invR Qxx qx q0 Q Pc Rc m g Nx Nu Fm
+addpath("../robots")
+global Pc Rc Fm m g Nx Nu
+global D d R invR Qxx qx q0
 global A B C
 
 %% set configuration matrices

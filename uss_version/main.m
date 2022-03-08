@@ -10,6 +10,7 @@ robot.footname = {'al','ar','bl','br'};
 robot =  setRobotConfig(robot, 3); % 3rd step motion
 m = 5;
 g = [0,0,-9.8]';
+% g =  [0,0,9.8]';
 
 contactfoot={''}; j=1;
 for i=1:length(robot.footname)
@@ -23,7 +24,7 @@ end
 
 %% get robot system matrices
 [Pc, Rc, Fm] = setConfigMatices(robot);
-[A,C] =  setSystemMatrices();
+[A,C] =  setSystemMatrices(Pc,Rc,Fm);
 Nx = 9; Nu = 9;
 
 %% set inequality constraints
@@ -38,17 +39,17 @@ Nx = 9; Nu = 9;
 % J(x,t) = [x; 1]'S(t)[x; 1] : const-to-go function
 
 xgoal = [zeros(3,1); robot.pcom; zeros(3,1)];
-uss = getUss(xgoal);
+uss = getUss(robot, xgoal);
 Ruu = setWeightMatrices(robot);
 invR = Ruu\eye(Nu);
 ru = -Ruu*uss;
 r0 = uss'*Ruu*uss;
 % R = [Ruu rx; rx' r0];
 
-wL = 10000;
+wL = 1000;
 wP = 1;
-wdP = 100000;
-Qxx = diag([wL,wL,wL, wP,wP,wP, wdP,wdP,wdP]);
+wdP = 1000;
+Qxx = 1e3*diag([wL,wL,wL, wP,wP,wP, wdP,wdP,wdP]);
 qx = -Qxx*xgoal; 
 q0 = xgoal'*Qxx*xgoal;
 % Q = [Qxx qx; qx' q0];

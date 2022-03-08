@@ -1,6 +1,6 @@
-function [A,C] =  setSystemMatrices()
+function [A,C] =  setSystemMatrices(Pc,Rc,Fm)
 
-global Pc Rc m g Fm
+global  m g 
 A = [ zeros(3) skew(Rc*Fm) zeros(3);
     zeros(3) zeros(3) eye(3);
     zeros(3,9)];

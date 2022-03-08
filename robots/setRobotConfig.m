@@ -19,4 +19,6 @@ switch(motion)
         robot = setRobotConfigBR(robot);%
     case 4
         robot = setRobotConfigAL(robot);
+    case 0
+        robot = setRobotConfigFull(robot);
 end

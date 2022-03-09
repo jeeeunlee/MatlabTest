@@ -1,0 +1,9 @@
+function sddot = hermite2ndDeriv(t,p1, p2, v1, v2, T)
+s = t/T;
+sddot =  p1*(12*s - 6)  + ...
+    p2*(-12*s + 6) + ...
+    v1*(6*s - 4)  + ...
+    v2*(6*s - 2);
+sddot = sddot/T/T;
+end
+

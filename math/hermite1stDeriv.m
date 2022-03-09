@@ -1,0 +1,9 @@
+function sdot = hermite1stDeriv(t, p1, p2, v1, v2, T)
+s = t/T;
+sdot =  p1*(6*s^2 - 6*s) + ...
+    p2*(-6*s^2 + 6*s) + ...
+    v1*(3*s^2 - 4*s + 1) + ...
+    v2*(3*s^2 - 2*s);
+sdot = sdot/T;
+end
+

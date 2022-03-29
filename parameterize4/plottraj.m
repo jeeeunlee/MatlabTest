@@ -50,16 +50,23 @@ subplot(3,1,1); plot(a_full(1,:)); title("acc");
 subplot(3,1,2); plot(a_full(2,:));
 subplot(3,1,3); plot(a_full(3,:));
 
+[Fc_se] = ContactForceSwingEnd(robot_goal, pcom_goal, Tt, beta, d);
+[Fc_s] = ContactForceSwingGivenRatio(robot, pcom_goal, Ts+Tt, Tt, ratio, alpha, beta, d);
 figure;
-idx_full = length(v_full);
-vnorm = zeros(idx_full,1);
-anorm = zeros(idx_full,1);
-for i=1:idx_full
-    vnorm(i) = sqrt(sum(v_full(:,i).*v_full(:,i)));
-    anorm(i) = sqrt(sum(a_full(:,i).*a_full(:,i)));
-end
-subplot(2,1,1);plot(vnorm);
-subplot(2,1,2);plot(anorm); ylim([0,3])
+subplot(3,1,1);plot(Fc_s(1:3,:)');
+subplot(3,1,2);plot(Fc_s(4:6,:)');
+subplot(3,1,3);plot(Fc_s(7:9,:)');
+
+% figure;
+% idx_full = length(v_full);
+% vnorm = zeros(idx_full,1);
+% anorm = zeros(idx_full,1);
+% for i=1:idx_full
+%     vnorm(i) = sqrt(sum(v_full(:,i).*v_full(:,i)));
+%     anorm(i) = sqrt(sum(a_full(:,i).*a_full(:,i)));
+% end
+% subplot(2,1,1);plot(vnorm);
+% subplot(2,1,2);plot(anorm); ylim([0,3])
 
 figure;
 plot3(p_full(1,:),p_full(2,:),p_full(3,:)); hold on;

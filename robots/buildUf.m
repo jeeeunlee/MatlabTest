@@ -1,4 +1,4 @@
-
+% Uf*f >= uu
 function [Uf, uu] = buildUf(mu)
 mu = mu / sqrt(2);
 Uf = [0,0,1;

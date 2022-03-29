@@ -7,11 +7,6 @@ global m g Nx Nu
 
 [Pc, Rc, Fm] = setConfigMatices(robot);
 [A, C] = setParameterizedSystemSwing(pcom_goal,Pc,Rc,Fm);
-A1 = A(1:3,:);
-A2 = A(4:6,:);
-C1 = C(1:3);
-C2 = C(4:6);
-
 
 %% set inequality constraints
 % D*Fc - d >= 0
@@ -36,8 +31,8 @@ Ts = 0.35;
 dd = -D*invA*C+d;
 sddot = -2/Ts/Ts;
 % when s=0 
-% D( m*(-1)*invA(:,1:3)*skew(g) + m*sddot*invA(:,4:6))*delP + D*invA*C - d >=0
-% DD1*delP - dd >=0
+
+
 DD1 = D*( m*(-1)*invA(:,1:3)*skew(g) + m*sddot*invA(:,4:6));
 % when s=1 
 % D( m*sddot*invA(:,4:6))*delP + D*invA*C - d >=0

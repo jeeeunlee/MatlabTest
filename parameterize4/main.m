@@ -9,8 +9,8 @@ global m g Nx Nu
 
 %% set configuration matrices
 robot.footname = {'al','ar','bl','br'};
-m = 5;
-g = [0,0,-9.8]';
+m = 5.7835741;
+g = [0,0,-9.81]';
 step_index = 3;
 robot_goal = setRobotConfig(robot, step_index+1); % 4th step motion = 3rd step motion done
 Nx = 9; Nu = 12;
@@ -22,7 +22,7 @@ robot = setRobotConfig(robot, step_index); % 3rd step motion
 Nx = 9; Nu = 9;
 
 pcom_goal = robot.pcom + 0.025*[-cos(1);0;sin(1)];
-Ts = 0.3;
+Ts = 0.25;
 % [DDas, DDbs, dds] = findPhaseSwing(robot, pcom_goal, Ts, Tt, 0); %t=0~Ts
 
 

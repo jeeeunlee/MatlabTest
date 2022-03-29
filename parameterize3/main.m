@@ -18,7 +18,7 @@ robot = setRobotConfig(robot, 3); % 3rd step motion
 Nx = 9; Nu = 9;
 
 pcom_goal = robot.pcom + 0.1*[-cos(1);0;sin(1)];
-Ts = 0.35;
+Ts = 0.3;
 [delP, sddot] = findPhaseSwing(robot, pcom_goal, Ts)
 
 
@@ -33,7 +33,7 @@ v0 = zeros(3,1);
 v1 = 2/Ts*delP;
 v2 = zeros(3,1);
 
-T = 0.4;
+T = 0.3;
 p_full = [];
 v_full = [];
 a_full = [];
@@ -63,12 +63,12 @@ close all;
 
 
 figure;
-subplot(3,1,1); plot(v_full(1,:));
+subplot(3,1,1); plot(v_full(1,:));title('vel')
 subplot(3,1,2); plot(v_full(2,:));
 subplot(3,1,3); plot(v_full(3,:));
 
 figure;
-subplot(3,1,1); plot(a_full(1,:));
+subplot(3,1,1); plot(a_full(1,:)); title('acc')
 subplot(3,1,2); plot(a_full(2,:));
 subplot(3,1,3); plot(a_full(3,:));
 
